@@ -3,70 +3,60 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShoppingCartASP</title>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <title>@ViewData["Title"] - E-Commerce</title>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/js/ttw-notification-menu.min.js"></script>
+    <script src="~/js/jquery-ui-1.8.14.custom.min.js"></script>
+    <script src="~/js/ttw-notification-menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/MyStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style_light.css">
+    <script src="~/js/MyScript.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ShoppingCartASP</a>
+    @{ViewData["ReturnUrl"] = null;} 
+    <header>
+        <div class="header">
+            <select class="selectCountry" style="margin-left:220px;">
+                <option>united kinkdom</option>
+                <option>turkey</option>
+            </select>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="selectCountry" style="margin-left:10px;">Home</a>
+            @await Html.PartialAsync("_LoginPartial")
+            <button class="selectCountry" style="margin-left:10px;">wishlist</button>
+        </div>
+        <div>
+            <div class="header2">
+                <span style="margin-left:200px; margin-right:50px; font-size : 20pt;">NEXLINE</span>
+                <a href="" class="headerLink">New In</a>
+                <a href="" class="headerLink">Men</a>
+                <a href="" class="headerLink">Women</a>
+                <a href="" class="headerLink">Kids</a>
+                <a href="" class="headerLink">Beauty</a>
+                <a href="" class="headerLink">Sale</a>
+                <input type="text" class="search" placeholder="Search..">
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+            <div style="overflow: hidden; padding : 30px; padding-left:5px;">
+                <span id="cart" class="notification-menu-item" style="margin-top:8px;"><img style="margin-top:3px;" src="/images/cart.png"> <a asp-controller="Home" asp-action="Index">Cart</a></span>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
+        <div class="firstPart">free next day delivery</div>
+        <div class="secondPart">sale now up to 50%</div>
+        <div class="thirdPart">free returns to store</div>
+    </header>
+    <div class="container body-contentb main">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - ShoppingCartASP</p>
-        </footer>
+        @RenderSection("Scripts", required: false)
     </div>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
+    <footer>
+        <div class="footer">
+            <span style="font-size:10pt; margin-left:250px;">
+                Sign up to our Newsletter and you'll get
+                weekly offers sent to your email.
+            </span>
+            <input type="text" class="Email" placeholder="Your Email Address"><input type="submit" class="submit">
+        </div>
+    </footer>
 </body>
 </html>

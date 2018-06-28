@@ -5,14 +5,67 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCartASP.Models;
+using ShoppingCartASP.Services;
+using ShoppingCartASP.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShoppingCartASP.Controllers
 {
     public class HomeController : Controller
     {
+        private IProductService _productService;
+
+        public HomeController(IProductService productService)
+        {
+            _productService = productService;
+        }
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.Id = Guid.NewGuid();
+            List<Product> Products = _productService.Products();
+            shoppingCart.products = Products.ToArray();
+            var Cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("ShoppingCart");
+            if (Cart == null)
+                shoppingCart.Quantities = new int[Products.Count];
+            else
+                shoppingCart.Quantities = Cart.Quantities;
+            return View(shoppingCart);
+        }
+
+        [HttpPost]
+        public IActionResult Index(ShoppingCart shoppingCart)
+        {
+            var Cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("ShoppingCart");
+            if (Cart == null)
+            {
+                for (int i = 0; i < shoppingCart.products.Length; i++)
+                {
+                    if (shoppingCart.Quantities[i] != 0)
+                        shoppingCart.products[i] = _productService.GetProduct(shoppingCart.products[i].Id);
+                }
+                HttpContext.Session.SetObjectAsJson("ShoppingCart", shoppingCart);
+            }
+            else
+            {
+                for (int i = 0; i < shoppingCart.Quantities.Length; i++)
+                    if (Cart.Quantities[i] == 0)
+                    {
+                        Cart.Quantities[i] = shoppingCart.Quantities[i];
+                        Cart.products[i] = _productService.GetProduct(shoppingCart.products[i].Id);
+                    }
+                HttpContext.Session.SetObjectAsJson("ShoppingCart", Cart);
+            }
+            return Redirect("Home/Cart");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Cart()
+        {
+            ShoppingCart shoppingCart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("ShoppingCart");
+            return View(shoppingCart);
         }
 
         public IActionResult About()
@@ -21,6 +74,7 @@ namespace ShoppingCartASP.Controllers
 
             return View();
         }
+
 
         public IActionResult Contact()
         {

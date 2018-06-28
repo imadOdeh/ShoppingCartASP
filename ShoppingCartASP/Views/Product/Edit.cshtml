@@ -1,0 +1,11 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" type="text/css" href="~/css/FormStyle.css">
+<h2 class="myheader">Edit Product</h2>
+@*<div style="width:100%; height: 300px; padding: 10px; border : 1px solid black ; overflow-y: scroll;">*@
+@{
+    await Html.RenderPartialAsync("ProductForm");
+}
+@*</div>*@

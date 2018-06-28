@@ -11,9 +11,10 @@ using System;
 namespace ShoppingCartASP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180619141238_products2")]
+    partial class products2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,7 +194,7 @@ namespace ShoppingCartASP.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("ProductCode");
+                    b.Property<string>("Product_code");
 
                     b.Property<string>("Size");
 

@@ -1,0 +1,17 @@
+﻿.myheader {
+    background: #e6e6e6;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+}
+.form {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+input[type=text]:focus {
+    background-color: #e6e6e6;
+}
+input[type=number]:focus {
+    background-color: #e6e6e6;
+}

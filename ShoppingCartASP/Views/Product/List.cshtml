@@ -1,0 +1,41 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List of Products</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Prodcuct Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product Code</th>
+            <th>
+            <th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            foreach (var product in Model)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td><img src="@product.Image" width="100" height="100"></td>
+                    <td><div style="margin-top:50px;">@product.Name</div></td>
+                    <td><div style="margin-top:50px;">@product.price</div></td>
+                    <td><div style="margin-top:50px;">@product.ProductCode</div></td>
+                    <td>
+                        <div style="margin-top:50px;">
+                            <a style="margin-top:40px;" href="/Product/Edit/?guid=@product.Id">Edit</a><br>
+                            <a href="/Product/Delete/?guid=@product.Id">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>

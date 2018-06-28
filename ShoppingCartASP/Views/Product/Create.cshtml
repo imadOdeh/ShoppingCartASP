@@ -1,0 +1,9 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" type="text/css" href="~/css/FormStyle.css">
+<h2 class="myheader">Create Product</h2>
+@{
+    await Html.RenderPartialAsync("ProductForm");
+}
