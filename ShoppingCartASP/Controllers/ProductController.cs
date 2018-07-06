@@ -66,9 +66,9 @@ namespace ShoppingCartASP.Controllers
             return RedirectToAction("List");
         }
         [HttpGet]
-        public IActionResult Edit(Guid guid)
+        public IActionResult Edit(int id)
         {
-            Product product = _productService.GetProduct(guid);
+            Product product = _productService.GetProduct(id);
             if (product == null)
             {
                 ViewData["Message"] = "There is no Product with this Id";
@@ -98,12 +98,18 @@ namespace ShoppingCartASP.Controllers
             return RedirectToAction("List");
         }
         [HttpGet]
-        public IActionResult Delete(Guid guid)
+        public IActionResult Delete(int id)
         {
-            Product product = _productService.GetProduct(guid);
+            Product product = _productService.GetProduct(id);
             if(product == null)
             {
                 return View();
+            }
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            string fullPath = webRootPath +"\\images\\" + product.Image;
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
             }
             _productService.DeleteProduct(product);
             return RedirectToAction("List");

@@ -1,0 +1,15 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Your Order in Processing </h2>
+<ul class="list-group">
+    <li class="list-group-item active">Order Details</li>
+    @for (int i = 0; i < Model.Products.Length; i++)
+    {
+      <li class="list-group-item">@Model._Products[i] : @Model.Quantities[i] </li>
+    }
+    <li class="list-group-item">Order Data : @Model.OrderDate</li>
+    <li class="list-group-item">Total Cost : @Model.TotalCost</li>
+</ul>

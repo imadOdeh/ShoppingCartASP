@@ -18,25 +18,25 @@ namespace ShoppingCartASP.Services
         public void CreateProduct(Product product)
         {
             _dbContext.Products.Add(product);
-             _dbContext.SaveChangesAsync();
+             _dbContext.SaveChanges();
         }
 
         public void DeleteProduct(Product product)
         {
             product.IsDeleted = true;
             _dbContext.Products.Update(product);
-            _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
 
         public void EditProduct(Product product)
         {
             _dbContext.Products.Update(product);
-            _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
 
-        public Product GetProduct(Guid guid)
+        public Product GetProduct(int id)
         {
-            return _dbContext.Products.FirstOrDefault(x => x.Id==guid);
+            return _dbContext.Products.FirstOrDefault(x => x.Id==id);
         }
 
         public List<Product> Products()

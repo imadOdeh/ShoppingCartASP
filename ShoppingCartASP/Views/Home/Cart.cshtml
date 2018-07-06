@@ -15,31 +15,33 @@
         <th>Price</th>
         <th>Total</th>
     </tr>
+    @{ int n = 0;}
     @for (int i = 0; i < Model.products.Length; i++)
     {
         if (Model.Quantities[i] != 0)
         {
-            string prod = "prod" + i, qt = "qt" + i, price = "price" + i, total = "total" + i;
-            int Length = @Model.Quantities.Length;
+            string prod = "prod" + n, qt = "qt" + n, price = "price" + n, total = "total" + n, remove ="remove" +n;
+            int Length = Model.Quantities.Length;
             <tr id="@prod">
                 <td>
                     <p>
                         <img src="~/images/@Model.products[i].Image" width="100" height="100">
                         <br>
                         <span>@Model.products[i].Name</span><br>
-                        <span><label class="label">Color</label> : @Model.products[i].Color </span> <br>
-                        <span><label class="label">size</label> : @Model.products[i].Size </span>
-                        <span><label class="label">Product code </label>: @Model.products[i].Size </span>
+                        <span><label class="my-label">Color</label> : @Model.products[i].Color </span> <br>
+                        <span><label class="my-label">size</label> : @Model.products[i].Size </span> <br>
+                        <span><label class="my-label">Product code </label>: @Model.products[i].ProductCode </span>
                     </p>
                 </td>
                 <td align="center">
                     <input type="number" asp-for="Quantities[i]" id="@qt" min="0" onchange="update(@i,@Length)" style="width:30px;"><br>
-                    <a id='remove@i' href="">remove</a>
+                    <a id='@remove' href="">remove</a>
                 </td>
                 <td align="center"><span class="price"><span id="@price">@Model.products[i].price</span> TL</span></td>
                 <td align="center" class="price"><span id="@total"></span> TL</td>
             </tr>
-
+            n++;
+               @*<script>update(@i,)</script>*@
         }
     }
 </table>
@@ -66,16 +68,15 @@
         </div>
     </div>
 </div>
-
 <script>
     $(function () {
 
         notifications = new $.ttwNotificationMenu({
-            notificationList: {
-                anchor: 'item',
+                            notificationList: {
+                                anchor: 'item',
                 offset: '0 15'
-            }
-        });
+                            }
+                        });
 
         notifications.initMenu({
             projects: '#projects',

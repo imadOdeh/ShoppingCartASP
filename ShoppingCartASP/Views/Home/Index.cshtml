@@ -12,9 +12,9 @@
 </style>
 <form method="post">
 <table>
-    <col width="300">
-    <col width="300">
-    <col width="300">
+    <col width="400">
+    <col width="400">
+    <col width="400">
     <tbody>
         @for (int i = 0; i < Model.products.Length; i += 3)
         {
@@ -27,6 +27,7 @@
                     @Model.products[i].price <br>
                     <input type="hidden" id="@i" asp-for="Quantities[i]" value="0">
                     <input type="hidden" asp-for="products[i].Id">
+                    <br><br><br><br>
                     <button type="button" onclick="AddtoCart(@i)" class="btn btn-primary">Add to Cart</button>
                 </td>
                 @if ((i + 1) < Model.products.Length)
@@ -41,6 +42,7 @@
                     @{int j = i + 1; }
                     <input type="hidden" asp-for="products[j].Id">
                     <input type="hidden" id="@j" asp-for="Quantities[j]" value="0">
+                    <br><br><br><br>
                     <button type="button" onclick="AddtoCart(@j)" class="btn btn-primary">Add to Cart</button>
                 </td>
                         }
@@ -56,6 +58,7 @@
                     @{int k = i + 2; }
                     <input type="hidden" asp-for="products[k].Id">
                     <input type="hidden" id="@k" asp-for="Quantities[k]" value="0">
+                    <br><br><br><br>
                     <button type="button" onclick="AddtoCart(@k)" class="btn btn-primary">Add to Cart</button>
                 </td>
                         }
@@ -63,7 +66,7 @@
                         }
     </tbody>
 </table>
-    <input type="submit" class="btn btn-primary" style="margin-left: 260px;width: 180px;margin-top: 20px;background: black;" value="Go To Cart">
+    <input type="submit" class="btn btn-primary" style="margin-left: 300px;width: 180px;margin-top: 20px;background: black;" value="Go To Cart">
 </form>
 <script>
     var Items = 0;

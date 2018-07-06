@@ -12,6 +12,6 @@ namespace ShoppingCartASP.Services
         void EditProduct(Product product);
         void DeleteProduct(Product product);
         List<Product> Products();
-        Product GetProduct(Guid guid);
+        Product GetProduct(int id);
     }
 }

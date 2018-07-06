@@ -39,6 +39,7 @@ namespace ShoppingCartASP
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddMvc();
         }
 

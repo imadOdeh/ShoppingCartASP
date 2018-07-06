@@ -35,24 +35,28 @@ $(document).ready(function(){
 	$("#final").text(finalResult);
 	//$( "a" ).click(function( event ) {
  //    event.preventDefault();
-	// });
-	$("#remove1").click(function(){
+    // });
+
+    $("#remove0").click(function (event) {
+        event.preventDefault();
 		$("#qt0").val(0);
 		$("#price0").text(0);
 		update(0);
-    $("#prod1").hide();
+    $("#prod0").hide();
      });
-	$("#remove2").click(function(){
+	$("#remove1").click(function(){
 		$("#qt1").val(0);
-		$("#price1").text(0);
-		$("#prod2").hide();
-		update(1);
+        $("#price1").text(0);
+        update(1);
+		$("#prod1").hide();
+		
 	});
-	$("#remove3").click(function(){
+	$("#remove2").click(function(){
 		$("#qt2").val(0);
-		$("#price2").text(0);
-		$("#prod3").hide();
-		update(2);
+        $("#price2").text(0);
+        update(2);
+		$("#prod2").hide();
+		
 	});
 	$("#add").click(function(){
     $("#code").toggle("slow");

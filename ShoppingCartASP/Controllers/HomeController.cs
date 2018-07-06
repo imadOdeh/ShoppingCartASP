@@ -23,7 +23,6 @@ namespace ShoppingCartASP.Controllers
         public IActionResult Index()
         {
             ShoppingCart shoppingCart = new ShoppingCart();
-            shoppingCart.Id = Guid.NewGuid();
             List<Product> Products = _productService.Products();
             shoppingCart.products = Products.ToArray();
             var Cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("ShoppingCart");
@@ -50,9 +49,9 @@ namespace ShoppingCartASP.Controllers
             else
             {
                 for (int i = 0; i < shoppingCart.Quantities.Length; i++)
-                    if (Cart.Quantities[i] == 0)
+                    if (Cart.Quantities[i] <shoppingCart.Quantities[i])
                     {
-                        Cart.Quantities[i] = shoppingCart.Quantities[i];
+                        Cart.Quantities[i] += shoppingCart.Quantities[i];
                         Cart.products[i] = _productService.GetProduct(shoppingCart.products[i].Id);
                     }
                 HttpContext.Session.SetObjectAsJson("ShoppingCart", Cart);

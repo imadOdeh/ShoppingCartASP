@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UserSecretsId>aspnet-ShoppingCartASP-613AED9A-CD05-41C1-B29B-2E8541744972</UserSecretsId>
+    <UserSecretsId>ShoppingCartASP</UserSecretsId>
   </PropertyGroup>
 
 
